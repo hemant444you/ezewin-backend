@@ -1,0 +1,84 @@
+
+{{> header}}
+
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Payment</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Payment</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="card">
+              <div class="card-header">
+                <!-- <button class="btn btn-sm btn-success right" data-toggle="modal" data-target="#addModal">Add New Customer</button> -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>S No</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Order Id</th>
+                    <th>Payment Id</th>
+                    <th>Status</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {{#each payments}}
+                  <tr>
+                    <td>{{i @index}}</td>
+                    <td><a href="/admin/user-details/{{this.user._id}}" target="_blank" class="text-white">{{this.user.Name}}</a></td>
+                    <td>{{this.amount}}</td>
+                    <td>{{this.razorpay_order_id}}</td>
+                    <td>{{this.razorpay_payment_id}}</td>
+                    <td>{{this.status}}</td>
+                  </tr>
+                  {{/each}}
+                  </tbody>
+                </table>
+                </div>
+                <!-- <span class="right mt-2">1 > 2</span> -->
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+
+{{> footer}}
+
+<script>
+  $(document).ready(function(){
+  	//
+
+  });
+</script>
+
+</body>
+</html>

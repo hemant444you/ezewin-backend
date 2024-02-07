@@ -1,0 +1,171 @@
+
+{{> header}}
+
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Notification</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Notification</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="card">
+              <div class="card-header">
+                <button class="btn btn-sm btn-success right" data-toggle="modal" data-target="#addModal">Send Notification</button>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>S No</th>
+                    <th>Title</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {{#each notifications}}
+                  <tr>
+                    <td>{{i @index}}</td>
+                    <td>{{this.title}}</td>
+                    <td>{{this.message}}</td>
+                    <td>
+                    	<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{this._id}}" data-action="delete"><i class="fa fa-trash"></i></button>
+                    </td>
+                  </tr>
+                  {{/each}}
+                  </tbody>
+                </table>
+                </div>
+                <!-- <span class="right mt-2">1 > 2</span> -->
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text">You are going to permanently delete this item..</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete-button">Confirm Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Modal -->
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Send Notification</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/admin/store-notification" method="post" class="add-form" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="error"></div>
+          <div class="form-group">
+            <label for="name" class="col-form-label">Title:</label>
+            <input type="text" name="title" class="form-control" id="title">
+          </div>
+          <div class="form-group">
+            <label for="name" class="col-form-label">Message:</label>
+            <textarea name="message" class="form-control" id="message"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="save-button">Send Notification</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{{> footer}}
+
+
+<script>
+  $(document).ready(function(){
+    var id = '';
+    var action = '';
+
+        $('#deleteModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      id = button.data('id');
+      $('#delete-id').val(id);
+      action= button.data('action');
+      $('#delete-button').removeClass('btn-success');
+      $('#delete-button').removeClass('btn-danger');
+      if(action == 'delete'){
+          $('#delete-button').addClass('btn-danger');
+          $('#delete-button').text('Confirm Delete');
+          $('.text').text('You are going to permanently delete this item..');
+      }else{
+          $('#delete-button').addClass('btn-success');
+          $('#delete-button').text('Confirm Restore');
+          $('.text').text('You are going to restore this item..');
+      }
+    });
+
+    $(document).on('click','#delete-button',function(){
+      var url = "/admin/delete-notification";
+      $.ajax({
+        url : url,
+        type: "POST",
+        data : {'id':id,'action':action},
+        success: function(data)
+        {
+          window.location.reload();
+        }
+      });
+    });
+
+  });
+
+</script>
+
+
+
+</body>
+</html>

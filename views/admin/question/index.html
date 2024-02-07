@@ -1,0 +1,230 @@
+
+{{> header}}
+
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Questions</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Questions</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="card">
+              <div class="card-header">
+                <button class="btn btn-sm btn-success right" data-toggle="modal" data-target="#addModal">Add New Question</button>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>S No</th>
+                    <th>Name</th>
+                    <th>Option A</th>
+                    <th>Option B</th>
+                    <th>Option C</th>
+                    <th>Option D</th>
+                    <th>Answer</th>
+                    <th>Status</th>
+                    <th>Video</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {{#each questions}}
+                  <tr>
+                    <td>{{i @index}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.option_A}}</td>
+                    <td>{{this.option_B}}</td>
+                    <td>{{this.option_C}}</td>
+                    <td>{{this.option_D}}</td>
+                    <td>{{this.answer}}</td>
+                    <td>{{this.status}}</td>
+                    <td><a href="{{this.video_path}}" target="_blank" class="text-white">{{this.video}}</a></td>
+                    <td>
+                    	<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addModal" data-id="{{this._id}}" data-name="{{this.name}}" data-option-a="{{this.option_A}}" data-option-b="{{this.option_B}}" data-option-c="{{this.option_C}}" data-option-d="{{this.option_D}}" data-answer="{{this.answer}}" data-video="{{this.video}}" data-link="{{this.video_path}}">
+                          <i class="fa fa-edit"></i>
+                      </button>
+
+                    	<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{this._id}}" data-action="delete"><i class="fa fa-trash"></i></button>
+                    </td>
+                  </tr>
+                  {{/each}}
+                  </tbody>
+                </table>
+                </div>
+                <!-- <span class="right mt-2">1 > 2</span> -->
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+    <!-- Add Modal -->
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Question</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/admin/store-question" method="post" class="add-form" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="error"></div>
+          <div class="form-group">
+            <label for="name" class="col-form-label">Name:</label>
+            <input type="text" name="name" class="form-control" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="option_A" class="col-form-label">Option A:</label>
+            <input type="text" name="option_A" class="form-control" id="option_A" required>
+          </div>
+          <div class="form-group">
+            <label for="option_B" class="col-form-label">Option B:</label>
+            <input type="text" name="option_B" class="form-control" id="option_B" required>
+          </div>
+          <div class="form-group">
+            <label for="option_C" class="col-form-label">Option C:</label>
+            <input type="text" name="option_C" class="form-control" id="option_C" required>
+          </div>
+          <div class="form-group">
+            <label for="option_D" class="col-form-label">Option D:</label>
+            <input type="text" name="option_D" class="form-control" id="option_D" required>
+          </div>
+          <div class="form-group">
+            <label for="role" class="col-form-label">Answer:</label>
+            <select name="answer" class="form-control" id="answer" required>
+              <option value="option_A">Option A</option>
+              <option value="option_B">Option B</option>
+              <option value="option_C">Option C</option>
+              <option value="option_D">Option D</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="video" class="col-form-label">Video:<a href="" id="video" target="_blank"></a>
+            <input type="file" name="file" accept="video/*" class="form-control video" required>
+          </div>
+          <input type="hidden" name="id" id="edit-id">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="save-button">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text">You are going to permanently delete this item..</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete-button">Confirm Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{> footer}}
+
+<script>
+  $(document).ready(function(){
+    var id = '';
+    var action = '';
+    
+    $('#deleteModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      id = button.data('id');
+      $('#delete-id').val(id);
+      action= button.data('action');
+      $('#delete-button').removeClass('btn-success');
+      $('#delete-button').removeClass('btn-danger');
+      if(action == 'delete'){
+          $('#delete-button').addClass('btn-danger');
+          $('#delete-button').text('Confirm Delete');
+          $('.text').text('You are going to permanently delete this item..');
+      }else{
+          $('#delete-button').addClass('btn-success');
+          $('#delete-button').text('Confirm Restore');
+          $('.text').text('You are going to restore this item..');
+      }
+    });
+
+    $(document).on('click','#delete-button',function(){
+      var url = "/admin/delete-question";
+      $.ajax({
+        url : url,
+        type: "POST",
+        data : {'id':id,'action':action},
+        success: function(data)
+        {
+          window.location.reload();
+        }
+      });
+    });
+
+    $('#addModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      $('#edit-id').val(button.data('id'));
+      $('#name').val(button.data('name'));
+      $('#option_A').val(button.data('option-a'));
+      $('#option_B').val(button.data('option-b'));
+      $('#option_C').val(button.data('option-c'));
+      $('#option_D').val(button.data('option-d'));
+      $('#answer').val(button.data('answer'));
+      $('#video').attr('href','');
+      $('#video').text('');
+      $("#form").prop('action','/admin/store-question');
+      if(button.data('id') != null){
+          $(".video").prop('required',false);
+          $(".add-form").prop('action','/admin/update-question');
+          $('#video').attr('href',button.data('link'));
+          $('#video').text(button.data('video'));
+          $('#exampleModalLabel').text('Edit Question');
+      }
+    });
+
+  });
+</script>
+
+</body>
+</html>

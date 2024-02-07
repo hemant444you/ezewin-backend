@@ -1,0 +1,169 @@
+{{> user_header}}
+
+<style>
+    .box{
+        background-image: linear-gradient(90deg,#80fecf,#f8b8b4,#76d6d6);
+        border:1px solid #ddd;
+        border-radius: 30px 30px 0px 0px;
+    }
+    .footer{
+        background-image: linear-gradient(90deg,#48dba4cc,#48dba4cc,#ffd45c);
+        border:1px solid #ddd;
+        border-radius: 0px 0px 30px 30px;
+    }
+    .right{float: right}
+</style>
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{status}} Contests</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">{{status}} Contests</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+            	<div class="card">
+                    <div class="card-header">{{status}} Contests</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{#if sessionFlash.message}}
+                                <div class="alert alert-danger">
+                                      {{{sessionFlash.message}}}
+                                </div>
+                                {{/if}}
+                            </div>
+                    		{{#each contests}}
+                    		<div class="col-md-12 p-4 box">
+                    			<div class="row ml-3 mr-3">
+                    				<div class="col-md-4"><p>Prize Pool</p></div>
+                    				<div class="col-md-4"><p class="text-center"><span class="p-2 badge badge-danger">{{diffForHumans this.starts_at}}</span></p></div>
+                    				<div class="col-md-4"><p class="right">Entry Fee</p></div>
+                    			</div>
+                    			<div class="row ml-3 mr-3">
+                    				<div class="col-md-4"><h3>₹{{this.prizePoll}}</h3></div>
+                    				<div class="col-md-4"></div>
+                    				<div class="col-md-4">
+                                        {{#ifEquals this.canJoin true}}
+                                          {{#ifEquals this.is_joined true}}
+                                            <button class="btn btn-warning right" disabled>₹{{this.entry_fee}} Joined</button>
+                                          {{else}}
+
+                                          <button class="btn btn-success right"data-toggle="modal" data-target="#confirmModal" data-id="{{this._id}}" data-entry="{{this.entry_fee}}">₹{{this.entry_fee}}</button>
+                                          {{/ifEquals}}
+
+                                        {{else}}
+                                        <button class="btn btn-warning right" disabled>₹{{this.entry_fee}}</button>
+                                        {{/ifEquals}}
+
+                                    </div>
+                    			</div>
+                    			<div class="row">
+                    				<div class="col-md-12">
+        		            			<a href="/user/contest-details/{{this._id}}">
+        		            				<h1 class="text-center p-2">{{this.name}}</h1>
+        		            			</a>
+                    				</div>
+                    			</div>
+                    			<div class="row">
+                    				<div class="col-md-12">
+                    					<div class="progress">
+                    						<div class="progress-bar bg-danger" style="width:{{quizOccuied}}%"></div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    			<div class="row">
+                    				<div class="col-md-6"><p>{{this.remaining_members}} sports left</p></div>
+                    				<div class="col-md-6"><p class="right">{{this.max_members}} sports</p></div>
+                    			</div>
+                    			
+                    		</div>
+                    		<div class="col-md-12 mb-5 footer">
+                    			<div class="row p-3">
+                    				<div class="col-md-6"><p>1st ₹{{#each winnings}} {{#if @first}} {{convertPrice this.amount}} {{/if}} {{/each}}</p></div>
+                    				<div class="col-md-6"><p class="right">{{this.winningsCount}} Winners</p></div>
+                    			</div>
+                    		</div>
+                    		{{/each}}
+                        </div>
+                    </div>
+            	</div>
+        	</div>
+    	</div>
+    </div>
+
+    <!-- Confirm Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form action="/user/join-contest" method="post" class="confirm-form">
+        <p class="text">Entry Fee<span class="right entry_fee"></span></p>
+        <p class="text">Wallet Balance <span class="right">{{user.wallet}}</span></p>
+        <hr>
+        <p class="text">To Pay <span class="right entry_fee">{{user.wallet}}</span></p>
+        <input type="hidden" name="contest_id" id="contest_id" value="">
+        <input type="hidden" name="amount" id="amount" value="">
+      </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="add-balance">Add Balance</button>
+        <button type="button" class="btn btn-success" id="join-contest">Join Contest</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+{{> footer}}
+
+<script>
+    $(document).ready(function(){
+        $('#confirmModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget);
+          $('#contest_id').val(button.data('id'));
+          $('.entry_fee').text(button.data('entry'));
+          $('#amount').val(button.data('entry'));
+          var wallet = "{{user.wallet}}";
+          $(".confirm-form").prop('action','');
+          if(button.data('entry') > wallet){
+            $('#join-contest').hide();
+            $('#add-balance').show();
+          }else{
+            $('#join-contest').show();
+            $('#add-balance').show();
+          }
+      });
+
+      $(document).on('click','#add-balance',function(){
+        $(".confirm-form").prop('action','/user/create-razorpay-order');
+        $(".confirm-form").submit();
+      });
+      $(document).on('click','#join-contest',function(){
+        $(".confirm-form").prop('action','/user/join-contest');
+        $(".confirm-form").submit();
+      });
+  });
+</script>
+
+</body>
+</html>

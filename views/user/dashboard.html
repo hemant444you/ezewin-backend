@@ -1,0 +1,65 @@
+
+    
+{{> user_header}}
+
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-lg-3 col-6">
+                    <a href="/user/upcoming-contest">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{upcoming_contests}}</h3>
+                            <p>Upcoming Contest</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <a href="/user/my-contest">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{my_contests}}</h3>
+                            <p>My Contests</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <a href="/user/transaction">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{transactions}}</h3>
+                            <p>Transactions</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+    </section>
+
+
+{{> footer}}

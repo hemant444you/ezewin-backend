@@ -1,0 +1,363 @@
+{{> header}}
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Contest Details</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Contest Details</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+
+                <h3 class="profile-username text-center">{{contest.name}}</h3>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>Starts at</b> <a class="float-right">{{diffForHumans contest.starts_at}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Entry Fee</b> <a class="float-right">{{contest.entry_fee}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Max Members</b> <a class="float-right">{{contest.max_members}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Quiz Value</b> <a class="float-right">₹{{contest.quizValue}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Max Profit</b> <a class="float-right">₹{{contest.quizProfit}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Joined Members</b> <a class="float-right">{{quizCount}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Collected Amount</b> <a class="float-right">{{contest.collectedAmount}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Price Poll</b> <a class="float-right">₹{{contest.prizePoll}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Winning Amount</b> <a class="float-right">₹{{contest.wonAmount}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Net Profit</b> <a class="float-right">₹{{contest.netProfit}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Status</b> <a class="float-right">{{contest.status}}</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="#winners" data-toggle="tab">Winnings</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#members" data-toggle="tab">Members</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#quiz" data-toggle="tab">Quiz</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#action" data-toggle="tab">Action</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="tab-pane active" id="winners">
+                    {{#if sessionFlash.message}}
+                      <div id="flash-messages">
+                          <div class="alert alert-danger">
+                                {{{sessionFlash.message}}}
+                          </div>
+                       </div>
+                    {{/if}}
+
+                    {{#ifEquals contest.status 'Pending'}}
+                    <button class="btn btn-sm btn-success right action" data-toggle="modal" data-target="#addModal">Add Winning</button>
+                    {{/ifEquals}}
+                    <div class="table-responsive">
+                      <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>Rank</th>
+                            <th>Winning Amount</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody class="test">
+                          {{#each contest.winnings}}
+                          <tr>
+                            <td>{{this.rank}}</td>
+                            <td>{{this.amount}}</td>
+                            <td>
+                              <span class="action">
+                              <button class="btn btn-sm btn-primary action" data-toggle="modal" data-target="#addModal" data-id="{{this._id}}" data-rank="{{this.rank}}"data-amount="{{this.amount}}">
+                              <i class="fa fa-edit"></i></button>
+
+                              <button class="btn btn-sm btn-danger action" data-toggle="modal" data-target="#deleteModal" data-id="{{this._id}}" data-action="delete"><i class="fa fa-trash"></i></button>
+                              </span>
+                            </td>
+                          </tr>
+                          {{/each}}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="members">
+                      <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-striped">
+                          <thead>
+                          <tr>
+                            <th>S No</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                          </tr>
+                          </thead>
+                          <tbody class="test">
+                          {{#each contest.users}}
+                          <tr>
+                            <td>{{i @index}}</td>
+                            <td><a href="/admin/user-details/{{this._id}}" target="_blank" class="text-white">{{this.Name}}</a></td>
+                            <td>{{this.Email}}</td>
+                            <td>{{this.Phone_Number}}</td>
+                          </tr>
+                          {{/each}}
+                          </tbody>
+                        </table>
+                      </div>
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="quiz">
+                      <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-striped">
+                          <thead>
+                          <tr>
+                            <th>S No</th>
+                            <th>Name</th>
+                            <th>Answered</th>
+                            <th>Time</th>
+                            <th>Rank</th>
+                            <th>Wins</th>
+                          </tr>
+                          </thead>
+                          <tbody class="test">
+                          {{#each quizzes}}
+                          <tr>
+                            <td>{{i @index}}</td>
+                            <td><a href="/admin/user-details/{{this.user._id}}" target="_blank" class="text-white">{{this.user.Name}}</a></td>
+                            <td>{{this.answered_option}}</td>
+                            <td>{{this.answered_in}}</td>
+                            <td>{{this.rank}}</td>
+                            <td>{{this.winning}}</td>
+                          </tr>
+                          {{/each}}
+                          </tbody>
+                        </table>
+                      </div>
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="action">
+                      <div class="row">
+                        <div class="col-md-12">
+                            <p>Status : <span class="badge badge-warning">{{contest.status}}</span></p>
+                            {{#if contest.question}}
+                            <video src="{{contest.question.video_path}}" height="200x;" width="100%" controls></video>
+                            <p class="text-danger">Question: {{contest.question.name}}</p>
+                            <p>Option A: {{contest.question.option_A}}</p>
+                            <p>Option B: {{contest.question.option_B}}</p>
+                            <p>Option C: {{contest.question.option_C}}</p>
+                            <p>Option D: {{contest.question.option_D}}</p>
+                            <p class="text-success">Right Answer: {{contest.question.answer}}</p>
+                            {{else}}
+                              <h1 class="text-center text-danger mt-5 time"></h1>
+                            {{/if}}
+                            {{#ifEquals contest.status "Pending"}}
+                              <p class="">Note: You will be not able to edit or delete this contest ans winnings after adding to Upcoming list</p>
+                            <form action="/admin/contest-update-status" method="post">
+                              <input type="hidden" name="contest_id" value="{{contest._id}}">
+                              <input type="hidden" name="status" value="Upcoming">
+                              <input type="submit" class="btn btn-primary" value="Add To Upcoming Contest">
+                            </form>
+                            {{/ifEquals}}
+
+                        </div>
+                      </div>
+                  </div>
+                  <!-- /.tab-pane -->
+
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+<!-- Add Modal -->
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Contest</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/admin/store-winning" method="post" class="add-form" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="error"></div>
+          <div class="form-group">
+            <label for="rank" class="col-form-label">Rank:</label>
+            <input type="text" name="rank" class="form-control" id="rank" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+          </div>
+          <div class="form-group">
+            <label for="amount" class="col-form-label">Winning Amount:</label>
+            <div class="input-group">
+              <input type="text" name="amount" class="form-control" id="amount" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+              <div class="input-group-append">
+                <span class="input-group-text">Rs</span>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" name="id" id="edit-id">
+          <input type="hidden" name="contest" value="{{contest._id}}">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="save-button">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text">You are going to permanently delete this item..</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete-button">Confirm Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{> footer}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script>
+  $(document).ready(function(){
+    var id = '';
+    var action = '';
+    var status = "{{contest.status}}";
+    $('.action').hide();
+    if(status == 'Pending'){
+        $('.action').show();
+    }
+
+    function diff(){
+      var a = moment('{{contest.starts_at}}'); // contest start time
+      var b = moment(); // current time
+
+      diff = moment.preciseDiff(a,b, true);
+      diff_days = diff['days'];
+      diff_hours = diff['hours'];
+      diff_minutes = diff['minutes'];
+      diff_seconds = diff['seconds'] < 10 ? '0' + diff['seconds'] : diff['seconds'];
+      var time = (diff_days ? diff_days + 'd:' : '') + diff_hours + 'h:' + diff_minutes + 'm:' + diff_seconds + 'sec' ;
+      $('.time').text(time);
+
+    }
+    if(status == 'Upcoming' || status == 'Opened' || status == 'Ready'){
+      setInterval(diff,1000);
+    }
+
+    $('#deleteModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      id = button.data('id');
+      $('#delete-id').val(id);
+      action= button.data('action');
+      $('#delete-button').removeClass('btn-success');
+      $('#delete-button').removeClass('btn-danger');
+      if(action == 'delete'){
+          $('#delete-button').addClass('btn-danger');
+          $('#delete-button').text('Confirm Delete');
+          $('.text').text('You are going to permanently delete this item..');
+      }else{
+          $('#delete-button').addClass('btn-success');
+          $('#delete-button').text('Confirm Restore');
+          $('.text').text('You are going to restore this item..');
+      }
+    });
+
+    $(document).on('click','#delete-button',function(){
+      var url = "/admin/delete-winning";
+      $.ajax({
+        url : url,
+        type: "POST",
+        data : {'id':id,'action':action},
+        success: function(data)
+        {
+          window.location.reload();
+        }
+      });
+    });
+
+    $('#addModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      $('#edit-id').val(button.data('id'));
+      $('#rank').val(button.data('rank'));
+      $('#amount').val(button.data('amount'));
+
+    });
+
+  });
+</script>
+
+</body>
+</html>

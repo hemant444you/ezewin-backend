@@ -1,0 +1,162 @@
+{{> header}}
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Settings</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Setting</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                Business Setting
+              </div>
+              <div class="card-body">
+                <form action="/admin/store-setting" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Bussiness Name</label>
+                                <input type="text" class="form-control" name="bussiness_name" value="{{setting.bussiness_name}}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Logo <img src="{{setting.logo_path}}" width="30px;"></label>
+                                <input type="file" class="form-control" name="logo" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Favicon <img src="{{setting.logo_path}}" width="30px;"></label>
+                                <input type="file" class="form-control" name="favicon" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Msg91 Key</label>
+                                <input type="text" class="form-control" name="msg91_key" value="{{setting.msg91_key}}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Msg91 Sender</label>
+                                <input type="text" class="form-control" name="msg91_sender" value="{{setting.msg91_sender}}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Msg91 Flow Id</label>
+                                <input type="text" class="form-control" name="msg91_flow_id" value="{{setting.msg91_flow_id}}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Razorpay Key</label>
+                                <input type="text" class="form-control" name="razorpay_key" value="{{setting.razorpay_key}}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Razorpay Secret</label>
+                                <input type="text" class="form-control" name="razorpay_secret" value="{{setting.razorpay_secret}}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>FCM Key</label>
+                                <input type="text" class="form-control" name="fcm_key" value="{{setting.fcm_key}}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Call Support Number</label>
+                                <input type="text" class="form-control" name="call_support_number" value="{{setting.call_support_number}}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Whatsapp Support Number</label>
+                                <input type="text" class="form-control" name="whatsapp_support_number" value="{{setting.whatsapp_support_number}}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Pagination</label>
+                                <input type="text" class="form-control" name="pagination" value="{{setting.pagination}}" 
+                                onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>CGST</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="cgst" value="{{setting.cgst}}" 
+                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>SGST</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="sgst" value="{{setting.sgst}}" 
+                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Admin Charge</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="admin_charge" value="{{setting.admin_charge}}" 
+                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="id" value="{{setting._id}}">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="submit" class="btn btn-block bg-gradient-primary btn-flat" value="Save">
+                        </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+{{> footer}}
+
+</body>
+</html>

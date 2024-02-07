@@ -1,0 +1,149 @@
+</div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 1.0
+    </div>
+    <strong>Copyright &copy; 2014-2022 <a href="https://analogueitsolutions.com/" target="_blank">Analogue IT Solutions</a>.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+
+<!-- jQuery -->
+<script src="/admin/js/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/admin/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="/admin/js/jquery.dataTables.min.js"></script>
+<script src="/admin/js/dataTables.bootstrap4.min.js"></script>
+<script src="/admin/js/dataTables.responsive.min.js"></script>
+<script src="/admin/js/responsive.bootstrap4.min.js"></script>
+<script src="/admin/js/dataTables.buttons.min.js"></script>
+<script src="/admin/js/buttons.bootstrap4.min.js"></script>
+<script src="/admin/js/jszip.min.js"></script>
+<script src="/admin/js/pdfmake.min.js"></script>
+<script src="/admin/js/vfs_fonts.js"></script>
+<script src="/admin/js/buttons.html5.min.js"></script>
+<script src="/admin/js/buttons.print.min.js"></script>
+<script src="/admin/js/buttons.colVis.min.js"></script>
+<script src="/admin/js/inputmask.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/admin/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/admin/js/demo.js"></script>
+
+<!-- Select2 -->
+<!--<script src="/admin/plugins/select2/js/select2.full.min.js"></script>-->
+
+<!-- Bootstrap Switch -->
+<script src="/admin/js/bootstrap-switch.min.js"></script>
+<script src="/admin/js/style.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+
+<script>
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+</script>
+<script type="module">
+
+  var firebaseConfig = {
+        apiKey: "AIzaSyCMIXqJyXbmxmFMdywPuFbYd6cRUx-l6nc",
+        authDomain: "school-979f6.firebaseapp.com",
+        databaseURL: "https://school-979f6.firebaseio.com",
+        projectId: "school-979f6",
+        storageBucket: "school-979f6.appspot.com",
+        messagingSenderId: "308636612449",
+        appId: "1:308636612449:web:603eb003f33921ad9db720",
+        measurementId: "G-45CQ9YMRNN"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+    
+    function startFCM() {
+        messaging
+            .requestPermission()
+            .then(function () {
+                return messaging.getToken()
+            })
+            .then(function (response) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: 'save.token',
+                    type: 'POST',
+                    data: {
+                        device_token: response,
+                    },
+                    dataType: 'JSON',
+                    success: function (response) {
+                        alert('Token stored.');
+                    },
+                    error: function (error) {
+                        alert(error);
+                    },
+                });
+            }).catch(function (error) {
+                alert(error);
+            });
+    }
+    messaging.onMessage(function (payload) {
+        const title = payload.notification.title;
+        const options = {
+            body: payload.notification.body,
+            icon: payload.notification.icon,
+        };
+        new Notification(title, options);
+    });
+    
+</script>
+
+<script>
+$(document).ready(function(){
+    $(function () {
+        $(".table").DataTable({
+          "responsive": true, "ordering": true, "lengthChange": false, "autoWidth": false,"bPaginate": true,"bInfo": false,"searching": true,"pageLength":20,
+          order: [[0, 'desc']],
+          buttons: [
+            {
+                extend: 'csvHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            'colvis'
+        ]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        
+    });
+    
+    $(document).on('click','#save-button',function(){
+        $(this).hide();
+    });
+});
+</script>
+
+

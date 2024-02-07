@@ -1,0 +1,140 @@
+body {
+    font-family: "Questrial" !important;
+    background-color: #339999;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+
+.card {
+    border: none;
+    border-radius: 0;
+    width: 420px !important;
+    margin: 0 auto;
+}
+
+.signup {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    padding: 10px 50px;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+h5 {
+    margin-bottom: 3px;
+}
+
+small {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+input {
+    width: 100%;
+    display: block;
+    margin-bottom: 7px;
+}
+
+.form-control {
+    border: 1px solid #dca101;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.075);
+    letter-spacing: 1px;
+}
+
+.text-left {
+    color: rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+}
+
+.text-right {
+    color: #ff0147;
+    font-weight: bold;
+}
+
+span.text-center {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.fab {
+    padding: 15px;
+    font-size: 23px;
+}
+
+.fa-facebook {
+    color: #0303d9bf;
+}
+
+.fa-twitter {
+    color: #0078fade;
+}
+
+.fa-linkedin {
+    color: #18b1c0;
+}
+
+/* for mobile number */
+
+.input-group-addon {
+    padding: 6px 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.mobile {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 0;
+    display: table-cell;
+    padding: 6px 0px;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid white;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    outline: none;
+    box-shadow: none;
+    letter-spacing: 3px;
+}
+
+.prefix input {
+    border-radius: 0px 4px 4px 0px;
+}
+
+.prefix .input-group-addon {
+    border-right: 0;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.input-group-addon.prefix {
+    border-radius: 4px 0px 0px 4px;
+    border-right: 0;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}

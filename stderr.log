@@ -1,0 +1,149 @@
+Tue, 06 Feb 2024 12:12:08 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:437020) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:12:13 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:437455) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:12:17 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:437657) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:14:54 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:444560) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:14:58 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:444715) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:17:43 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:452744) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:17:47 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:453056) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/errors:478
+    ErrorCaptureStackTrace(err);
+    ^
+
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:387:5)
+    at ServerResponse.setHeader (node:_http_outgoing:644:11)
+    at ServerResponse.header (/home/knqkyhpu/nodevenv/admin.ezewin.analogueitsolutions.com/16/lib/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.location (/home/knqkyhpu/nodevenv/admin.ezewin.analogueitsolutions.com/16/lib/node_modules/express/lib/response.js:915:15)
+    at ServerResponse.redirect (/home/knqkyhpu/nodevenv/admin.ezewin.analogueitsolutions.com/16/lib/node_modules/express/lib/response.js:953:18)
+    at download_result (/home/knqkyhpu/admin.ezewin.analogueitsolutions.com/Controllers/FrontendController.js:41:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+Tue, 06 Feb 2024 12:19:50 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:458262) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:19:54 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:458423) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/errors:478
+    ErrorCaptureStackTrace(err);
+    ^
+
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:387:5)
+    at ServerResponse.setHeader (node:_http_outgoing:644:11)
+    at ServerResponse.header (/home/knqkyhpu/nodevenv/admin.ezewin.analogueitsolutions.com/16/lib/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.location (/home/knqkyhpu/nodevenv/admin.ezewin.analogueitsolutions.com/16/lib/node_modules/express/lib/response.js:915:15)
+    at ServerResponse.redirect (/home/knqkyhpu/nodevenv/admin.ezewin.analogueitsolutions.com/16/lib/node_modules/express/lib/response.js:953:18)
+    at download_result (/home/knqkyhpu/admin.ezewin.analogueitsolutions.com/Controllers/FrontendController.js:41:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+Tue, 06 Feb 2024 12:30:56 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:492027) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:31:03 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:492287) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:31:03 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:492304) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:32:58 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:496952) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:33:03 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:497093) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:33:05 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:497143) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+/home/knqkyhpu/admin.ezewin.analogueitsolutions.com/Controllers/FrontendController.js:40
+        res.redirect(back);
+                     ^
+
+ReferenceError: back is not defined
+    at download_result (/home/knqkyhpu/admin.ezewin.analogueitsolutions.com/Controllers/FrontendController.js:40:22)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+Tue, 06 Feb 2024 12:33:44 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:498985) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:33:48 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:499085) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:35:39 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:504678) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)
+Tue, 06 Feb 2024 12:47:02 GMT express-session deprecated req.secret; provide secret option at server.js:31:9
+(node:532549) NOTE: We are formalizing our plans to enter AWS SDK for JavaScript (v2) into maintenance mode in 2023.
+
+Please migrate your code to use AWS SDK for JavaScript (v3).
+For more information, check the migration guide at https://a.co/7PzMCcy
+(Use `node --trace-warnings ...` to show where the warning was created)

@@ -1,0 +1,52 @@
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<form name='razorpayform' action="/user/verify-razorpay-signature" method="POST">
+    <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
+    <input type="hidden" name="razorpay_signature"  id="razorpay_signature" >
+    <input type="hidden" name="razorpay_order_id" id="razorpay_order_id">
+    <input type="hidden" name="amount" id="amount">
+</form>
+
+<script>
+var options = {
+    "key": "{{setting.razorpay_key}}", // Enter the Key ID generated from the Dashboard
+    "amount": "{{response.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "{{response.currency}}",
+    "name": "{{user.Name}}",
+    "description": "Wallet Amount",
+    "image": "{{setting.logo_path}}",
+    "order_id": "{{response.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "{{callback_url}}",
+    "handler": function (response){
+        document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+	    document.getElementById('razorpay_signature').value = response.razorpay_signature;
+	    document.getElementById('razorpay_order_id').value = "{{response.id}}";
+	    document.getElementById('amount').value = "{{response.amount}}";
+	    document.razorpayform.submit();
+    },
+    "prefill": {
+        "name": "{{user.Name}}",
+        "email": "{{user.Email}}",
+        "contact": "{{user.Phone_Number}}"
+    },
+    "notes": {
+        "address": "{{setting.bussiness_address}}"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+    
+rzp1.open();
+
+</script>

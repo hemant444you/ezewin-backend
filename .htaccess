@@ -1,0 +1,19 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/knqkyhpu/admin.ezewin.analogueitsolutions.com"
+PassengerBaseURI "/"
+PassengerNodejs "/home/knqkyhpu/nodevenv/admin.ezewin.analogueitsolutions.com/16/bin/node"
+PassengerAppType node
+PassengerStartupFile server.js
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION BEGIN
+<IfModule Litespeed>
+SetEnv AWS_REGION ap-south-1
+SetEnv JWT_SECRET EzeWin#1
+SetEnv KEY_ID rzp_test_k08nI1XM4ua61t
+SetEnv KEY_SECRET cm2v1OSggPZ5vVHX5rl3jrq4
+SetEnv MONGO_URI mongodb+srv://Ezewin:Ezewin1234@cluster.d0zllx3.mongodb.net/?retryWrites=true&w=majority
+SetEnv TZ Asia/Calcutta
+SetEnv AWS_ACCESS_KEY_ID AKIAXG2J7T7CNSIRWBHD
+SetEnv AWS_SECRET_ACCESS_KEY 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
+</IfModule>
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION END
