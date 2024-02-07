@@ -2,8 +2,8 @@ const express = require('express');
 
 const app = express();
 
-app.get('/',functiion(req, res){
+app.get('/',function(req,res){
     res.send('its working');
 })
-app.listen(process.env.PORT || 8001);
+app.listen(process.env.PORT || 8000);
 module.export = app
